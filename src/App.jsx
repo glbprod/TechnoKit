@@ -47,8 +47,8 @@ function App() {
 
         <div className="stats">
             <div className="stat-item">
-              <span className="stat-number">3</span>
-              <span className="stat-label">Niveaux</span>
+              <span className="stat-number">0</span>
+              <span className="stat-label">Ressources</span>
             </div>
             <div className="stat-item">
               <span className="stat-number">9</span>
