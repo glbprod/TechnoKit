@@ -8,16 +8,12 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>🛠️ TechnoKit</h1>
-        <p className="subtitle">Mon atelier numérique pour l'enseignement de la technologie</p>
+        <p className="subtitle">Kit numérique pour prof de techno</p>
       </header>
 
       <main className="App-main">
         <div className="welcome-card">
-          <h2>Bienvenue dans votre espace pédagogique !</h2>
-          <p>
-            TechnoKit est votre assistant personnel pour organiser et structurer 
-            vos cours de technologie au collège (cycle 4).
-          </p>
+          <h2>Espace pédagogique</h2>
           
           <div className="stats">
             <div className="stat-item">
