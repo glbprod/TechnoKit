@@ -74,7 +74,7 @@ npm run build
 ## 📁 Structure du projet
 
 ```
-lessonlab/
+TechnoKit/
 ├── public/              # Assets statiques
 ├── src/
 │   ├── components/      # Composants React réutilisables
