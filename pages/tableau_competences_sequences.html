@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau des Compétences - Séquences Technologie Collège</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            font-style: italic;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .legend-badge {
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.85em;
+        }
+        
+        .niveau-5 { background: #3498db; color: white; }
+        .niveau-4 { background: #e67e22; color: white; }
+        .niveau-3 { background: #e74c3c; color: white; }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        th {
+            padding: 18px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.05em;
+        }
+        
+        th:first-child {
+            border-top-left-radius: 10px;
+        }
+        
+        th:last-child {
+            border-top-right-radius: 10px;
+        }
+        
+        tbody tr {
+            transition: all 0.3s ease;
+        }
+        
+        tbody tr:hover {
+            background: #f8f9fa;
+            transform: scale(1.01);
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        tbody tr:last-child td:first-child {
+            border-bottom-left-radius: 10px;
+        }
+        
+        tbody tr:last-child td:last-child {
+            border-bottom-right-radius: 10px;
+        }
+        
+        .sequence-title {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .sequence-badge {
+            background: #3498db;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: bold;
+        }
+        
+        .competence-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .competence-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .competence-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .notion-tag {
+            display: inline-block;
+            background: #ecf0f1;
+            color: #2c3e50;
+            padding: 5px 12px;
+            margin: 3px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        
+        .theme-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .theme-1 { background: #e8f4f8; color: #2980b9; }
+        .theme-2 { background: #fef5e7; color: #d68910; }
+        .theme-3 { background: #ebf5fb; color: #5499c7; }
+        
+        .projet-concret {
+            background: #d5f4e6;
+            border-left: 4px solid #27ae60;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-style: italic;
+        }
+        
+        .projet-label {
+            font-weight: bold;
+            color: #27ae60;
+            margin-right: 8px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Tableau de synthèse des compétences</h1>
+        <p class="subtitle">Séquences pédagogiques - Technologie Collège Cycle 4</p>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <span class="legend-badge niveau-5">5ème</span>
+                <span>Cinquième</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-badge niveau-4">4ème</span>
+                <span>Quatrième</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-badge niveau-3">3ème</span>
+                <span>Troisième</span>
+            </div>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">Séquence & Niveau</th>
+                    <th style="width: 35%;">Compétences du programme</th>
+                    <th style="width: 40%;">Notions et connaissances</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- SÉQUENCE 1 : Objets connectés -->
+                <tr>
+                    <td>
+                        <div class="sequence-title">
+                            <span class="sequence-badge niveau-3">3ème</span>
+                            <span>Objets connectés (IoT)</span>
+                        </div>
+                        <div class="theme-badge theme-1">Thème 1 : Design & Innovation</div>
+                        <div class="projet-concret">
+                            <span class="projet-label">📡 Projet :</span>
+                            Station météo connectée
+                        </div>
+                    </td>
+                    <td>
+                        <ul class="competence-list">
+                            <li><strong>C1 :</strong> Imaginer une solution en réponse à un besoin</li>
+                            <li><strong>C2 :</strong> Réaliser une représentation numérique d'un objet</li>
+                            <li><strong>C6 :</strong> Comprendre et modifier un programme</li>
+                            <li><strong>C9 :</strong> Concevoir, écrire et tester un programme</li>
+                            <li><strong>C5 :</strong> Identifier les flux d'informations</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <span class="notion-tag">Cahier des charges</span>
+                        <span class="notion-tag">Réseaux informatiques</span>
+                        <span class="notion-tag">Protocoles TCP/IP</span>
+                        <span class="notion-tag">Algorithmes</span>
+                        <span class="notion-tag">Variables & capteurs</span>
+                        <span class="notion-tag">Programmation Scratch/Python</span>
+                        <span class="notion-tag">Objets connectés</span>
+                        <span class="notion-tag">Interface homme-machine</span>
+                    </td>
+                </tr>
+                
+                <!-- SÉQUENCE 2 : Identité numérique -->
+                <tr>
+                    <td>
+                        <div class="sequence-title">
+                            <span class="sequence-badge niveau-5">5ème</span>
+                            <span>Identité numérique</span>
+                        </div>
+                        <div class="theme-badge theme-2">Thème 2 : Société & OST</div>
+                        <div class="projet-concret">
+                            <span class="projet-label">🔐 Projet :</span>
+                            Charte numérique collaborative
+                        </div>
+                    </td>
+                    <td>
+                        <ul class="competence-list">
+                            <li><strong>C7 :</strong> Analyser l'impact environnemental d'un OST</li>
+                            <li><strong>C8 :</strong> Présenter à l'oral et à l'écrit</li>
+                            <li><strong>C3 :</strong> Utiliser les outils numériques</li>
+                            <li><strong>EMC :</strong> Développer un comportement responsable</li>
+                            <li><strong>C5 :</strong> Identifier les flux d'informations</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <span class="notion-tag">Identité numérique</span>
+                        <span class="notion-tag">Données personnelles</span>
+                        <span class="notion-tag">GPS & géolocalisation</span>
+                        <span class="notion-tag">Triangulation satellite</span>
+                        <span class="notion-tag">Cyberharcèlement</span>
+                        <span class="notion-tag">Droit à l'image</span>
+                        <span class="notion-tag">RGPD</span>
+                        <span class="notion-tag">Sécurité informatique</span>
+                        <span class="notion-tag">Usurpation d'identité</span>
+                    </td>
+                </tr>
+                
+                <!-- SÉQUENCE 3 : Impression 3D -->
+                <tr>
+                    <td>
+                        <div class="sequence-title">
+                            <span class="sequence-badge niveau-4">4ème</span>
+                            <span>Conception & Impression 3D</span>
+                        </div>
+                        <div class="theme-badge theme-3">Thème 3 : Modélisation</div>
+                        <div class="projet-concret">
+                            <span class="projet-label">🖨️ Projet :</span>
+                            Porte-clés personnalisé
+                        </div>
+                    </td>
+                    <td>
+                        <ul class="competence-list">
+                            <li><strong>C1 :</strong> Imaginer une solution répondant à un besoin</li>
+                            <li><strong>C2 :</strong> Réaliser une représentation numérique</li>
+                            <li><strong>C4 :</strong> Analyser le fonctionnement d'un système</li>
+                            <li><strong>C3 :</strong> Utiliser des logiciels de CAO</li>
+                            <li><strong>Projet :</strong> S'organiser en équipe</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <span class="notion-tag">Diagramme des interacteurs</span>
+                        <span class="notion-tag">Contraintes techniques</span>
+                        <span class="notion-tag">Modélisation 3D</span>
+                        <span class="notion-tag">Tinkercad</span>
+                        <span class="notion-tag">Fichiers STL</span>
+                        <span class="notion-tag">Impression 3D (FDM)</span>
+                        <span class="notion-tag">Prototypage</span>
+                        <span class="notion-tag">Écoconception</span>
+                        <span class="notion-tag">Matériaux (PLA)</span>
+                    </td>
+                </tr>
+                
+                <!-- SÉQUENCE 4 : Évolution des OST -->
+                <tr>
+                    <td>
+                        <div class="sequence-title">
+                            <span class="sequence-badge niveau-5">5ème</span>
+                            <span>Évolution des ordinateurs</span>
+                        </div>
+                        <div class="theme-badge theme-2">Thème 2 : Société & OST</div>
+                        <div class="projet-concret">
+                            <span class="projet-label">📊 Projet :</span>
+                            Frise chronologique interactive
+                        </div>
+                    </td>
+                    <td>
+                        <ul class="competence-list">
+                            <li><strong>C7 :</strong> Comparer et commenter des évolutions</li>
+                            <li><strong>C7 :</strong> Expliquer les raisons des évolutions</li>
+                            <li><strong>C8 :</strong> Décrire sous forme schématique</li>
+                            <li><strong>C3 :</strong> Rechercher et sélectionner l'information</li>
+                            <li><strong>Histoire :</strong> Repères chronologiques</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <span class="notion-tag">Évolution technologique</span>
+                        <span class="notion-tag">Ruptures technologiques</span>
+                        <span class="notion-tag">Architecture informatique</span>
+                        <span class="notion-tag">Composants (CPU, RAM)</span>
+                        <span class="notion-tag">Miniaturisation</span>
+                        <span class="notion-tag">Loi de Moore</span>
+                        <span class="notion-tag">Obsolescence</span>
+                        <span class="notion-tag">Timeline & chronologie</span>
+                    </td>
+                </tr>
+                
+                <!-- SÉQUENCE 5 : Outils bureautiques -->
+                <tr>
+                    <td>
+                        <div class="sequence-title">
+                            <span class="sequence-badge niveau-4">4ème</span>
+                            <span>Outils bureautiques</span>
+                        </div>
+                        <div class="theme-badge theme-1">Thème 1 : Design & Innovation</div>
+                        <div class="projet-concret">
+                            <span class="projet-label">💻 Projet :</span>
+                            Tutoriels vidéo collaboratifs
+                        </div>
+                    </td>
+                    <td>
+                        <ul class="competence-list">
+                            <li><strong>C3 :</strong> Utiliser des outils numériques</li>
+                            <li><strong>C8 :</strong> Présenter à l'écrit des solutions techniques</li>
+                            <li><strong>C7 :</strong> Comparer des solutions techniques</li>
+                            <li><strong>EMI :</strong> Produire un document multimédia</li>
+                            <li><strong>Projet :</strong> Collaborer en équipe</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <span class="notion-tag">Traitement de texte</span>
+                        <span class="notion-tag">Tableur & formules</span>
+                        <span class="notion-tag">Présentation (diaporama)</span>
+                        <span class="notion-tag">Mise en page</span>
+                        <span class="notion-tag">Formats de fichiers</span>
+                        <span class="notion-tag">Cloud & collaboration</span>
+                        <span class="notion-tag">Stockage des données</span>
+                        <span class="notion-tag">Propriété intellectuelle</span>
+                    </td>
+                </tr>
+                
+                <!-- SÉQUENCE 6 : Robotique -->
+                <tr>
+                    <td>
+                        <div class="sequence-title">
+                            <span class="sequence-badge niveau-3">3ème</span>
+                            <span>Robotique industrielle</span>
+                        </div>
+                        <div class="theme-badge theme-2">Thème 2 : Société & OST</div>
+                        <div class="projet-concret">
+                            <span class="projet-label">🤖 Projet :</span>
+                            Robot suiveur de ligne
+                        </div>
+                    </td>
+                    <td>
+                        <ul class="competence-list">
+                            <li><strong>C4 :</strong> Analyser le fonctionnement d'un système</li>
+                            <li><strong>C6 :</strong> Comprendre et modifier un programme</li>
+                            <li><strong>C7 :</strong> Analyser l'impact sociétal</li>
+                            <li><strong>C9 :</strong> Concevoir et tester un programme</li>
+                            <li><strong>Géo :</strong> Mutations économiques</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <span class="notion-tag">Robotique</span>
+                        <span class="notion-tag">Automatisation</span>
+                        <span class="notion-tag">Capteurs & actionneurs</span>
+                        <span class="notion-tag">Boucles & conditions</span>
+                        <span class="notion-tag">Arduino / mBot</span>
+                        <span class="notion-tag">Chaîne d'information</span>
+                        <span class="notion-tag">Chaîne d'énergie</span>
+                        <span class="notion-tag">Impact sociétal</span>
+                        <span class="notion-tag">Industrie 4.0</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div style="margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 5px solid #3498db;">
+            <h3 style="color: #2c3e50; margin-bottom: 10px;">📌 Légende des compétences du cycle 4</h3>
+            <p style="line-height: 1.8; color: #555;">
+                <strong>C1 à C9 :</strong> Les 9 compétences officielles du programme de technologie cycle 4<br>
+                <strong>EMC :</strong> Enseignement Moral et Civique<br>
+                <strong>EMI :</strong> Éducation aux Médias et à l'Information<br>
+                <strong>Projet :</strong> Compétences transversales liées à la démarche de projet
+            </p>
+        </div>
+    </div>
+</body>
+</html>
