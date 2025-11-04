@@ -32,30 +32,35 @@
   --transition-fast: 0.2s ease-in-out;
 }
 
-/* ☀️ Mode Jour */
+/* 🍂 Mode Jour Automnal */
 [data-theme="light"] {
-  --bg-primary: #fff9f5;
-  --bg-secondary: #f5f3ef;
-  --bg-tertiary: #e8e6e0;
-  --bg-card: #ffffff;
+  /* Arrière-plans - Tons chauds automnaux */
+  --bg-primary: #f7f3eb;          /* Beige très clair (brume matinale) */
+  --bg-secondary: #f2ede3;        /* Sable doux */
+  --bg-tertiary: #ebe4d8;         /* Écorce claire */
+  --bg-card: #fffefb;             /* Blanc cassé chaud */
   
-  --accent-primary: #7cb87c;
-  --accent-secondary: #8fb98f;
-  --accent-tertiary: #d4e8d0;
+  /* Accents - Verts d'automne */
+  --accent-primary: #9db89d;      /* Vert sauge automnal */
+  --accent-secondary: #b8c9a8;    /* Vert mousse pâle */
+  --accent-tertiary: #d9e5d0;     /* Vert menthe très clair */
   
-  --glow-primary: #ff9f43;
-  --glow-secondary: #ffd166;
-  --glow-tertiary: #f4d03f;
-  --particle: #ffd166;
+  /* Glow - Oranges et ocres (feuilles d'automne) */
+  --glow-primary: #e67e22;        /* Orange citrouille */
+  --glow-secondary: #f39c12;      /* Or automnal */
+  --glow-tertiary: #d68910;       /* Ocre chaud */
+  --particle: #ff8c42;            /* Orange vif (feuilles) */
   
-  --text-primary: #2c3e3a;
-  --text-secondary: #3a4a45;
-  --text-muted: #6b7b75;
+  /* Texte */
+  --text-primary: #3d3027;        /* Brun écorce */
+  --text-secondary: #6b5d4f;      /* Taupe */
+  --text-muted: #8c7e6f;          /* Beige foncé */
   
-  --border-subtle: rgba(168, 201, 165, 0.3);
-  --border-visible: rgba(168, 201, 165, 0.6);
-  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
-  --shadow-glow: 0 0 20px rgba(249, 199, 79, 0.3);
+  /* Bordures et ombres */
+  --border-subtle: rgba(157, 184, 157, 0.25);
+  --border-visible: rgba(157, 184, 157, 0.5);
+  --shadow-soft: 0 4px 20px rgba(214, 137, 16, 0.12);
+  --shadow-glow: 0 0 25px rgba(230, 126, 34, 0.25);
 }
 
 * {
@@ -111,27 +116,26 @@ code {
               box-shadow var(--transition-theme);
 }
 
-/* Mode jour : effet de pollen plus doux */
+/* 🍂 Mode jour : feuilles qui tombent en virevoltant */
 [data-theme="light"] .firefly {
-  box-shadow: 0 0 8px var(--glow-secondary),
-              0 0 15px var(--glow-tertiary);
-  filter: blur(0.5px);
+  animation-name: fall;
 }
 
-/* Différentes tailles de lucioles */
-.firefly.small {
-  width: 2px;
-  height: 2px;
-}
-
-.firefly.medium {
-  width: 3px;
-  height: 3px;
-}
-
-.firefly.large {
-  width: 4px;
-  height: 4px;
+@keyframes fall {
+  0% {
+    transform: translate(0, -20vh) rotate(0deg) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(var(--tx), 120vh) rotate(360deg) scale(1.2);
+    opacity: 0;
+  }
 }
 
 /* Animation de flottement */
