@@ -1,4 +1,4 @@
-# 📚 LessonLab
+# 📚 TechnoKit
 
 > Mon atelier numérique pour organiser et structurer mes cours de technologie au collège
 
