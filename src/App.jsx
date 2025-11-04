@@ -1,11 +1,30 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
 
+  // Génération des lucioles au montage du composant
+  useEffect(() => {
+    // Les lucioles sont maintenant gérées par CSS
+    // Mais on peut ajouter une classe dynamique si besoin
+    return () => {
+      // Cleanup si nécessaire
+    }
+  }, [])
+
   return (
     <div className="App">
+      {/* 🌟 Particules scintillantes en arrière-plan */}
+      <div className="fireflies">
+        {[...Array(20)].map((_, i) => (
+          <div 
+            key={i} 
+            className={`firefly ${i % 3 === 0 ? 'small' : i % 3 === 1 ? 'medium' : 'large'}`}
+          />
+        ))}
+      </div>
+
       <header className="App-header">
         <h1>🛠️ TechnoKit</h1>
         <p className="subtitle">Kit numérique pour prof de techno</p>
@@ -14,6 +33,10 @@ function App() {
       <main className="App-main">
         <div className="welcome-card">
           <h2>Espace pédagogique</h2>
+          <p>
+            TechnoKit est votre atelier numérique personnel pour organiser et structurer 
+            vos cours de technologie au collège (cycle 4).
+          </p>
           
           <div className="stats">
             <div className="stat-item">
