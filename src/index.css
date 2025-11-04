@@ -34,16 +34,16 @@
 
 /* ☀️ Mode Jour */
 [data-theme="light"] {
-  --bg-primary: #faf8f5;
+  --bg-primary: #fff9f5;
   --bg-secondary: #f5f3ef;
   --bg-tertiary: #e8e6e0;
   --bg-card: #ffffff;
   
-  --accent-primary: #a8c9a5;
+  --accent-primary: #7cb87c;
   --accent-secondary: #8fb98f;
   --accent-tertiary: #d4e8d0;
   
-  --glow-primary: #f9c74f;
+  --glow-primary: #ff9f43;
   --glow-secondary: #ffd166;
   --glow-tertiary: #f4d03f;
   --particle: #ffd166;
