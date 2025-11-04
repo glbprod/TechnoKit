@@ -74,19 +74,17 @@ npm run build
 ## 📁 Structure du projet
 
 ```
-TechnoKit/
-├── public/              # Assets statiques
-├── src/
-│   ├── components/      # Composants React réutilisables
-│   ├── pages/          # Pages de l'application
-│   ├── hooks/          # Custom hooks
-│   ├── context/        # Context API providers
-│   ├── utils/          # Fonctions utilitaires
-│   ├── data/           # Données statiques (séquences, compétences)
-│   ├── styles/         # Styles globaux
-│   └── App.jsx         # Composant racine
-├── package.json
-└── README.md
+technokit/                    # Racine de votre projet
+├── package.json              ← À la racine
+├── vite.config.js            ← À la racine
+├── index.html                ← À la racine
+├── .gitignore                ← À la racine
+├── README.md                 ← À la racine
+└── src/                      ← Créer ce dossier
+    ├── main.jsx              ← Dans src/
+    ├── App.jsx               ← Dans src/
+    ├── App.css               ← Dans src/
+    └── index.css             ← Dans src/
 ```
 
 ## 🎓 Contexte pédagogique
