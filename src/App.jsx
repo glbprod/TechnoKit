@@ -1,21 +1,16 @@
 import { useState, useEffect } from 'react'
+import ThemeToggle from './components/ThemeToggle'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
 
-  // Génération des lucioles au montage du composant
-  useEffect(() => {
-    // Les lucioles sont maintenant gérées par CSS
-    // Mais on peut ajouter une classe dynamique si besoin
-    return () => {
-      // Cleanup si nécessaire
-    }
-  }, [])
-
   return (
     <div className="App">
-      {/* 🌟 Particules scintillantes en arrière-plan */}
+      {/* 🌙☀️ Toggle de thème */}
+      <ThemeToggle />
+
+      {/* 🌟 Particules (lucioles en mode nuit, pollen en mode jour) */}
       <div className="fireflies">
         {[...Array(20)].map((_, i) => (
           <div 

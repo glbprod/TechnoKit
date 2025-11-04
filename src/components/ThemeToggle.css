@@ -1,0 +1,186 @@
+/* 🌙☀️ Toggle de thème jour/nuit */
+
+.theme-toggle {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 1000;
+  
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 50px;
+  padding: 0.6rem 1.2rem 0.6rem 0.6rem;
+  
+  cursor: pointer;
+  transition: all var(--transition-medium);
+  
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(10px);
+}
+
+.theme-toggle:hover {
+  border-color: var(--border-visible);
+  box-shadow: var(--shadow-soft), var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+/* Track (rail du toggle) */
+.toggle-track {
+  position: relative;
+  width: 50px;
+  height: 26px;
+  background: var(--accent-tertiary);
+  border-radius: 20px;
+  transition: background var(--transition-medium);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Thumb (curseur qui bouge) */
+.toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  background: var(--bg-card);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  transition: transform var(--transition-medium),
+              background var(--transition-medium),
+              box-shadow var(--transition-medium);
+  
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation du thumb selon le thème */
+.theme-toggle.light .toggle-thumb {
+  transform: translateX(24px);
+  box-shadow: 0 2px 8px var(--glow-primary);
+}
+
+/* Icônes */
+.icon {
+  width: 14px;
+  height: 14px;
+  transition: all var(--transition-medium);
+}
+
+.icon.moon {
+  color: var(--glow-primary);
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+.icon.sun {
+  color: var(--glow-primary);
+  animation: rotate 8s linear infinite;
+}
+
+/* Label texte */
+.toggle-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  user-select: none;
+  letter-spacing: 0.3px;
+}
+
+/* Animations */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .theme-toggle {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
+  }
+  
+  .toggle-label {
+    font-size: 0.8rem;
+  }
+  
+  .toggle-track {
+    width: 44px;
+    height: 24px;
+  }
+  
+  .toggle-thumb {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .theme-toggle.light .toggle-thumb {
+    transform: translateX(20px);
+  }
+  
+  .icon {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Animation au premier chargement */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.theme-toggle {
+  animation: slideIn 0.6s ease-out;
+}
+
+/* Effet de pulse au hover */
+.theme-toggle:hover .toggle-thumb {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 2px 12px var(--glow-primary);
+  }
+}
+
+/* Mode réduit pour économie d'énergie */
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle,
+  .toggle-thumb,
+  .icon {
+    animation: none !important;
+    transition: none !important;
+  }
+}
