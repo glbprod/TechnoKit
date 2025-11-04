@@ -19,11 +19,19 @@
   font-size: 3.5rem;
   margin-bottom: 0.5rem;
   color: var(--text-primary);
-  text-shadow: 0 0 30px rgba(212, 175, 55, 0.3),
-               0 4px 10px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 30px var(--glow-primary),
+               0 4px 10px rgba(0, 0, 0, 0.3);
   animation: breathe 4s ease-in-out infinite;
   font-weight: 700;
   letter-spacing: -0.5px;
+  transition: color var(--transition-theme),
+              text-shadow var(--transition-theme);
+}
+
+/* Mode jour : ombre plus douce */
+[data-theme="light"] .App-header h1 {
+  text-shadow: 0 0 20px var(--glow-secondary),
+               0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .subtitle {
@@ -32,6 +40,7 @@
   font-weight: 300;
   letter-spacing: 0.5px;
   animation: fadeIn 1s ease-in-out;
+  transition: color var(--transition-theme);
 }
 
 @keyframes fadeIn {
@@ -58,7 +67,7 @@
 
 /* 🎴 Carte de bienvenue */
 .welcome-card {
-  background: var(--forest-dark);
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: 24px;
   padding: 3rem;
@@ -66,7 +75,9 @@
   margin-bottom: 2rem;
   text-align: center;
   backdrop-filter: blur(10px);
-  transition: all var(--transition-slow);
+  transition: all var(--transition-slow),
+              background var(--transition-theme),
+              border-color var(--transition-theme);
   position: relative;
   overflow: hidden;
 }
@@ -78,9 +89,16 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--glow-primary) 0%, transparent 70%);
+  opacity: 0.05;
   animation: pulse 8s ease-in-out infinite;
   pointer-events: none;
+  transition: background var(--transition-theme);
+}
+
+/* Mode jour : effet plus subtil */
+[data-theme="light"] .welcome-card::before {
+  opacity: 0.03;
 }
 
 @keyframes pulse {
@@ -144,20 +162,22 @@
 .stat-number {
   font-size: 3rem;
   font-weight: 700;
-  color: var(--gold-ancient);
-  text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  color: var(--glow-primary);
+  text-shadow: 0 0 20px var(--glow-primary);
   animation: glow 3s ease-in-out infinite;
   position: relative;
+  transition: color var(--transition-theme),
+              text-shadow var(--transition-theme);
 }
 
 @keyframes glow {
   0%, 100% {
-    text-shadow: 0 0 20px rgba(212, 175, 55, 0.5),
-                 0 0 30px rgba(212, 175, 55, 0.3);
+    text-shadow: 0 0 20px var(--glow-primary),
+                 0 0 30px var(--glow-secondary);
   }
   50% {
-    text-shadow: 0 0 30px rgba(212, 175, 55, 0.8),
-                 0 0 40px rgba(212, 175, 55, 0.5);
+    text-shadow: 0 0 30px var(--glow-primary),
+                 0 0 40px var(--glow-secondary);
   }
 }
 
@@ -194,10 +214,13 @@
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--forest-moss), var(--forest-sage));
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
   color: var(--text-primary);
-  box-shadow: 0 4px 15px rgba(45, 90, 69, 0.4);
+  box-shadow: 0 4px 15px var(--glow-tertiary);
   border: 1px solid var(--border-visible);
+  transition: all var(--transition-slow),
+              background var(--transition-theme),
+              color var(--transition-theme);
 }
 
 .btn-primary::before {
@@ -208,7 +231,8 @@
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: rgba(212, 175, 55, 0.2);
+  background: var(--glow-primary);
+  opacity: 0.2;
   transform: translate(-50%, -50%);
   transition: width var(--transition-slow), height var(--transition-slow);
 }
@@ -220,24 +244,28 @@
 
 .btn-primary:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(45, 90, 69, 0.6),
-              0 0 30px rgba(212, 175, 55, 0.3);
-  border-color: var(--gold-ancient);
+  box-shadow: 0 8px 25px var(--glow-secondary),
+              0 0 30px var(--glow-primary);
+  border-color: var(--glow-primary);
 }
 
 .btn-secondary {
-  background: var(--forest-bark);
+  background: var(--accent-tertiary);
   color: var(--text-secondary);
   border: 1px solid var(--border-subtle);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all var(--transition-slow),
+              background var(--transition-theme),
+              color var(--transition-theme),
+              border-color var(--transition-theme);
 }
 
 .btn-secondary:hover {
-  background: var(--forest-deep);
+  background: var(--accent-primary);
   color: var(--text-primary);
   border-color: var(--border-visible);
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(26, 58, 46, 0.6);
+  box-shadow: 0 8px 25px var(--glow-tertiary);
 }
 
 /* 📇 Cartes d'information */
@@ -249,12 +277,14 @@
 }
 
 .info-card {
-  background: var(--forest-dark);
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: 20px;
   padding: 2rem;
   box-shadow: var(--shadow-soft);
-  transition: all var(--transition-slow);
+  transition: all var(--transition-slow),
+              background var(--transition-theme),
+              border-color var(--transition-theme);
   position: relative;
   overflow: hidden;
 }
@@ -266,10 +296,11 @@
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(135deg, var(--gold-ancient), var(--forest-moss));
+  background: linear-gradient(135deg, var(--glow-primary), var(--accent-primary));
   border-radius: 20px;
   opacity: 0;
-  transition: opacity var(--transition-slow);
+  transition: opacity var(--transition-slow),
+              background var(--transition-theme);
   z-index: -1;
 }
 
@@ -277,10 +308,13 @@
   opacity: 0.3;
 }
 
+[data-theme="light"] .info-card:hover::after {
+  opacity: 0.2;
+}
+
 .info-card:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: var(--shadow-soft),
-              0 0 30px rgba(212, 175, 55, 0.2);
+  box-shadow: var(--shadow-soft), var(--shadow-glow);
   border-color: var(--border-visible);
 }
 
@@ -324,23 +358,26 @@
 }
 
 .badge {
-  background: var(--forest-deep);
+  background: var(--accent-tertiary);
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
   padding: 0.6rem 1.3rem;
   border-radius: 20px;
   font-size: 0.9rem;
   font-weight: 600;
-  transition: all var(--transition-medium);
+  transition: all var(--transition-medium),
+              background var(--transition-theme),
+              color var(--transition-theme),
+              border-color var(--transition-theme);
   letter-spacing: 0.5px;
 }
 
 .badge:hover {
-  background: var(--forest-moss);
-  border-color: var(--gold-ancient);
+  background: var(--accent-primary);
+  border-color: var(--glow-primary);
   color: var(--text-primary);
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+  box-shadow: 0 4px 15px var(--glow-tertiary);
 }
 
 /* 🦶 Pied de page */
