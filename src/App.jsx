@@ -62,16 +62,16 @@ function App() {
 
         <div className="info-cards">
           <div className="info-card">
-            <h3>📋 Séquences</h3>
-            <p>Créez et organisez vos séquences pédagogiques par niveau et thématique</p>
+            <h3>📁 Ressources</h3>
+            <p>Centralisez tous vos documents et ressources numériques</p>
           </div>
           <div className="info-card">
             <h3>🎯 Compétences</h3>
             <p>Suivez la progression des compétences du cycle 4 de vos élèves</p>
           </div>
           <div className="info-card">
-            <h3>📁 Ressources</h3>
-            <p>Centralisez tous vos documents et ressources numériques</p>
+            <h3>📋 Séquences</h3>
+            <p>Créez et organisez vos séquences pédagogiques par niveau et thématique</p>
           </div>
         </div>
 
