@@ -1,36 +1,61 @@
-/* 🌲 TechnoKit - Thème Forestier Nocturne 🌙 */
+/* 🌲 TechnoKit - Thème Forestier Jour/Nuit 🌙☀️ */
 
 :root {
-  /* Palette Forestière */
-  --forest-night: #0d1117;
-  --forest-dark: #161b22;
-  --forest-deep: #1a3a2e;
-  --forest-moss: #2d5a45;
-  --forest-bark: #3d2f1f;
-  --forest-sage: #4a6855;
+  /* 🌙 Mode Nuit (par défaut) */
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-tertiary: #1a3a2e;
+  --bg-card: #161b22;
   
-  /* Accents dorés et lumineux */
-  --gold-ancient: #ffd700;
-  --gold-light: #f4e4a6;
-  --amber-glow: #ffd89b;
-  --firefly: #fff5cc;
+  --accent-primary: #2d5a45;
+  --accent-secondary: #4a6855;
+  --accent-tertiary: #3d2f1f;
   
-  /* Texte */
+  --glow-primary: #d4af37;
+  --glow-secondary: #f4e4a6;
+  --glow-tertiary: #ffd89b;
+  --particle: #fff5cc;
+  
   --text-primary: #e6edf3;
   --text-secondary: #9da8b6;
   --text-muted: #6e7681;
-  --text-glow: #d4af37;
   
-  /* Bordures et ombres */
   --border-subtle: rgba(77, 105, 89, 0.3);
   --border-visible: rgba(77, 105, 89, 0.6);
   --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.4);
   --shadow-glow: 0 0 20px rgba(212, 175, 55, 0.2);
   
   /* Animations */
+  --transition-theme: 0.8s ease-in-out;
   --transition-slow: 0.6s ease-in-out;
   --transition-medium: 0.4s ease-in-out;
   --transition-fast: 0.2s ease-in-out;
+}
+
+/* ☀️ Mode Jour */
+[data-theme="light"] {
+  --bg-primary: #faf8f5;
+  --bg-secondary: #f5f3ef;
+  --bg-tertiary: #e8e6e0;
+  --bg-card: #ffffff;
+  
+  --accent-primary: #a8c9a5;
+  --accent-secondary: #8fb98f;
+  --accent-tertiary: #d4e8d0;
+  
+  --glow-primary: #f9c74f;
+  --glow-secondary: #ffd166;
+  --glow-tertiary: #f4d03f;
+  --particle: #ffd166;
+  
+  --text-primary: #2c3e3a;
+  --text-secondary: #3a4a45;
+  --text-muted: #6b7b75;
+  
+  --border-subtle: rgba(168, 201, 165, 0.3);
+  --border-visible: rgba(168, 201, 165, 0.6);
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-glow: 0 0 20px rgba(249, 199, 79, 0.3);
 }
 
 * {
@@ -45,11 +70,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--forest-night);
+  background: var(--bg-primary);
   min-height: 100vh;
   color: var(--text-primary);
   position: relative;
   overflow-x: hidden;
+  transition: background var(--transition-theme),
+              color var(--transition-theme);
 }
 
 code {
@@ -57,7 +84,7 @@ code {
     monospace;
 }
 
-/* 🌟 Particules scintillantes (lucioles) */
+/* 🌟 Particules (lucioles en mode nuit, pollen en mode jour) */
 .fireflies {
   position: fixed;
   top: 0;
@@ -73,13 +100,22 @@ code {
   position: absolute;
   width: 3px;
   height: 3px;
-  background: var(--firefly);
+  background: var(--particle);
   border-radius: 50%;
-  box-shadow: 0 0 10px var(--amber-glow),
-              0 0 20px var(--gold-light),
-              0 0 30px var(--gold-ancient);
+  box-shadow: 0 0 10px var(--glow-tertiary),
+              0 0 20px var(--glow-secondary),
+              0 0 30px var(--glow-primary);
   animation: float linear infinite;
   opacity: 0;
+  transition: background var(--transition-theme),
+              box-shadow var(--transition-theme);
+}
+
+/* Mode jour : effet de pollen plus doux */
+[data-theme="light"] .firefly {
+  box-shadow: 0 0 8px var(--glow-secondary),
+              0 0 15px var(--glow-tertiary);
+  filter: blur(0.5px);
 }
 
 /* Différentes tailles de lucioles */
