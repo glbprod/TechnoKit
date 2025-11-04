@@ -33,7 +33,19 @@ function App() {
             vos cours de technologie au collège (cycle 4).
           </p>
           
-          <div className="stats">
+
+
+          <div className="actions">
+            <button className="btn-primary" onClick={() => setCount(count + 1)}>
+              🚀 Commencer ({count})
+            </button>
+            <button className="btn-secondary">
+              📚 Explorer
+            </button>
+          </div>
+        </div>
+
+        <div className="stats">
             <div className="stat-item">
               <span className="stat-number">3</span>
               <span className="stat-label">Niveaux</span>
@@ -47,16 +59,6 @@ function App() {
               <span className="stat-label">Séquences</span>
             </div>
           </div>
-
-          <div className="actions">
-            <button className="btn-primary" onClick={() => setCount(count + 1)}>
-              🚀 Commencer ({count})
-            </button>
-            <button className="btn-secondary">
-              📚 Explorer
-            </button>
-          </div>
-        </div>
 
         <div className="info-cards">
           <div className="info-card">
